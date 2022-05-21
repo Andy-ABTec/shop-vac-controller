@@ -2,7 +2,7 @@
 
  An Arduino Nano based project to provide automatic control for a small workshop vacuum by either sensing a tool use, or by a keyfob style remote control.
 
-![](SCH-Vac-Controller-V1.3.png)
+![Schematic Diagram](SCH-Vac-Controller-V1.3.png)
 
  Power control for the vacuum is provided by a 10A relay and the remote control by a small keyfob and reciever ( I used a [fob/reciever from Amazon](https://www.amazon.co.uk/gp/product/B08SHQ749R/)}.
 
