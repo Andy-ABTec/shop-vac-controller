@@ -17,21 +17,27 @@
 //Debug Control...
 #define DEBUG 1
 
-// Initialize delays...
+// Initialize delay times...
                     
-#define toolOnDelay 3                             // Delay between detecting the tool starting
-                                                  // and energising the vac relay
-#define offDelayMin 3                              // Value sets the minimum off time delay
-#define offDelayMax 30                             // Value sets the maximum off time delay
+#define toolOnDelay 3                               // Delay between detecting the tool starting
+                                                    // and energising the vac relay
+#define offDelayMin 3                               // Value sets the minimum off time delay
+#define offDelayMax 30                              // Value sets the maximum off time delay
 
-#define offDelayPin A7                             // pot connection to adjust the off time delay
+#define offDelayPin A7                              // pot connection to adjust the off time delay
 
-// Calculate the actual off time delay using the pot and limits above...
-int offDelay()
-{
+int offDelay()                                      //  Calculate the off time delay based on the min
+{                                                   //  and max delays and the pot setting
   int x=analogRead(offDelayPin);
   int offDelay=round((offDelayMax-offDelayMin)/1032.0*x+offDelayMin);         
   return(offDelay);
+}
+
+// The code uses both interupts so a replacement for "delay" is needed
+
+void mdelay()
+{
+  
 }
 
 // Setup...
