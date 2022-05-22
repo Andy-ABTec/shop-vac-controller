@@ -33,12 +33,8 @@ int offDelay()                                      //  Calculate the off time d
   return(offDelay);
 }
 
-// The code uses both interupts so a replacement for "delay" is needed
-
-void mdelay()
-{
-  
-}
+void remoteOP();                                    // Pr-edeclare remote control ISR
+void toolOP();                                      // Pr-edeclare tool ISR
 
 // Setup...
 void setup()
@@ -73,7 +69,19 @@ void setup()
     digitalWrite(relay,LOW);
   #endif
 
-  digitalWrite(power,HIGH);                         //Turn on the Power LED
+  // The code uses INT0 and INT1 to monitor the remote and tool s...
+
+  #define remoteIntPin 2
+  pinMode(remoteIntPin,INPUT);
+  attachInterrupt(digitalPinToInterrupt(2), remoteOP, CHANGE);
+
+  #define toolIntPin 3
+  pinMode(toolIntPin,INPUT);
+  attachInterrupt(digitalPinToInterrupt(3), toolOP, CHANGE);
+
+// Setup complete so turn on the power LED...
+
+  digitalWrite(power,HIGH);
 }
 
 // Loop...
