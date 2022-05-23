@@ -33,8 +33,8 @@ int offDelay()                                      //  Calculate the off time d
   return(offDelay);
 }
 
-void remoteOP();                                    // Pr-edeclare remote control ISR
-void toolOP();                                      // Pr-edeclare tool ISR
+void remoteOP();                                    // Pre-declare remote control ISR
+void toolOP();                                      // Pre-declare tool ISR
 
 // Setup...
 void setup()
@@ -69,12 +69,14 @@ void setup()
     digitalWrite(relay,LOW);
   #endif
 
-  // The code uses INT0 and INT1 to monitor the remote and tool s...
+  // The code uses INT0 and INT1 to monitor the remote and tool respectivly...
 
+  volatile bool remoteFlag=false;
   #define remoteIntPin 2
   pinMode(remoteIntPin,INPUT);
   attachInterrupt(digitalPinToInterrupt(2), remoteOP, CHANGE);
 
+  volatile bool toolFlag=false;
   #define toolIntPin 3
   pinMode(toolIntPin,INPUT);
   attachInterrupt(digitalPinToInterrupt(3), toolOP, CHANGE);
