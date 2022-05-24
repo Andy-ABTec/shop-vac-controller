@@ -84,17 +84,19 @@ void setup()
     digitalWrite(relay,HIGH);
     delay(1000);
     digitalWrite(relay,LOW);
+   #endif
+
+   #if DEBUG==1                                     // DEBUG: Read the offDelay
+    printf("offDelay = %d\n",offDelay());
+    delay (2500);
   #endif
 
- // Turn on the power led
+ // Turn on the power led...
   digitalWrite(power,HIGH);
 }
 
 // Loop...
 void loop()
 {
-  #if DEBUG==1                                      // DEBUG: Read the offDelay
-    printf("offDelay = %d\n",offDelay());
-    delay (2500);
-  #endif
+ 
 }
