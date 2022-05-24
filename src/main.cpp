@@ -6,7 +6,7 @@
    Date:       18/05/2022
    License:    GNU 3.0
    
-   Detects a wired tool being used or a remote fob being pressed to control a shop vac using
+   Detects a wired tool being used or a remote fob being pressed to control a shop vac with
    a 10A relay.
   */
 
@@ -19,11 +19,10 @@
 
 // Initialize delay times...
                     
-#define toolOnDelay 3                               // Delay between detecting the tool starting
-                                                    // and energising the vac relay
+#define onToolDelay 3                               // Delay between detecting the tool and
+                                                    // nergising the vac relay
 #define offDelayMin 3                               // Value sets the minimum off time delay
 #define offDelayMax 30                              // Value sets the maximum off time delay
-
 #define offDelayPin A7                              // pot connection to adjust the off time delay
 
 int offDelay()                                      //  Calculate the off time delay based on the min
@@ -33,8 +32,32 @@ int offDelay()                                      //  Calculate the off time d
   return(offDelay);
 }
 
-void remoteOP();                                    // Pre-declare remote control ISR
-void toolOP();                                      // Pre-declare tool ISR
+// Define Pins...
+#define remoteInt 2                                 // ISR trigger for remote
+#define remoteState 4                               // Current state of remote
+#define toolInt 3                                   // ISR trigger for tool
+#define toolState 5                                 // Current tool state
+
+#define relay 7                                     // Relay
+#define power 12                                    // Red "Power" LED
+#define vac 11                                      // Yellow "Vacuum" LED
+#define tool 10                                     // Green "Tool" LED
+#define remote 9                                    // Blue "Remote" LED
+
+// Prototype ISR Functions...
+void remoteISR();                              
+void toolISR();
+
+// Flash the vacuum led...
+void flash(int flashesPerSecond, int seconds)
+{
+  int rate=500/flashesPerSecond;
+  for(int i=0; i<flashesPerSecond*seconds*2; i++)
+  {
+    digitalWrite(vac,not(digitalRead(vac)));
+    delay(rate);
+  }
+}
 
 // Setup...
 void setup()
@@ -44,11 +67,6 @@ void setup()
   #endif
   
   // Initialise LED pins and blink LEDs...
-  #define power 12                                  // Red "Power" LED
-  #define vac 11                                    // Yellow "Vacuum" LED
-  #define tool 10                                   // Green "Tool" LED
-  #define remote 9                                  // Blue "Remote" LED
-
   int led[4]={power, vac, tool, remote};
   for (int pin=0; pin<4; pin++)
   {
@@ -59,7 +77,6 @@ void setup()
   }
 
   // Initialize relay pin...
-  #define relay 7
   digitalWrite(relay,LOW);
   pinMode(relay,OUTPUT);
 
@@ -69,19 +86,9 @@ void setup()
     digitalWrite(relay,LOW);
   #endif
 
-  // The code uses INT0 and INT1 to monitor the remote and tool respectivly...
-
-  volatile bool remoteFlag=false;
-  #define remoteIntPin 2
-  pinMode(remoteIntPin,INPUT);
-  attachInterrupt(digitalPinToInterrupt(2), remoteOP, CHANGE);
-
-  volatile bool toolFlag=false;
-  #define toolIntPin 3
-  pinMode(toolIntPin,INPUT);
-  attachInterrupt(digitalPinToInterrupt(3), toolOP, CHANGE);
-
-// Setup complete so turn on the power LED...
+  #if DEBUG==1                                      // DEBUG: flash vac led 
+    flash(4,4);
+  #endif
 
   digitalWrite(power,HIGH);
 }
