@@ -86,10 +86,7 @@ void setup()
     digitalWrite(relay,LOW);
   #endif
 
-  #if DEBUG==1                                      // DEBUG: flash vac led 
-    flash(4,4);
-  #endif
-
+ // Turn on the power led
   digitalWrite(power,HIGH);
 }
 
