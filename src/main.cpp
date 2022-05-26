@@ -1,11 +1,11 @@
 /* Arduino based Shop Vacuum Controller
    ====================================
-   
+
    Created by: Andy B
-   Version:    1.3
+   Version:    1.4
    Date:       18/05/2022
    License:    GNU 3.0
-   
+
    Detects a wired tool being used or a remote fob being pressed to control a shop vac with
    a 10A relay.
   */
@@ -18,7 +18,7 @@
 #define DEBUG 1
 
 // Initialize delay times...
-                    
+
 #define onToolDelay 3                               // Delay between detecting the tool and
                                                     // nergising the vac relay
 #define offDelayMin 3                               // Value sets the minimum off time delay
@@ -28,7 +28,7 @@
 int offDelay()                                      //  Calculate the off time delay based on the min
 {                                                   //  and max delays and the pot setting
   int x=analogRead(offDelayPin);
-  int offDelay=round((offDelayMax-offDelayMin)/1032.0*x+offDelayMin);         
+  int offDelay=round((offDelayMax-offDelayMin)/1032.0*x+offDelayMin);
   return(offDelay);
 }
 
@@ -44,9 +44,9 @@ int offDelay()                                      //  Calculate the off time d
 #define tool 10                                     // Green "Tool" LED
 #define remote 9                                    // Blue "Remote" LED
 
-// Prototype ISR Functions...
-void remoteISR();                              
-void toolISR();
+// Define Flags...
+bool remoteFlag=false;
+bool toolFlag=false;
 
 // Flash the vacuum led...
 void flash(int flashesPerSecond, int seconds)
@@ -65,7 +65,7 @@ void setup()
   #if DEBUG==1                                      // DEBUG: set up the serial port
     Serial.begin(9600);
   #endif
-  
+
   // Initialise LED pins and blink LEDs...
   int led[4]={power, vac, tool, remote};
   for (int pin=0; pin<4; pin++)
@@ -84,19 +84,19 @@ void setup()
     digitalWrite(relay,HIGH);
     delay(1000);
     digitalWrite(relay,LOW);
-   #endif
+  #endif
 
-   #if DEBUG==1                                     // DEBUG: Read the offDelay
+  #if DEBUG==1                                      // DEBUG: Read the offDelay
     printf("offDelay = %d\n",offDelay());
     delay (2500);
   #endif
 
- // Turn on the power led...
+  // Setup complete, turn on the power led...
   digitalWrite(power,HIGH);
 }
 
 // Loop...
 void loop()
 {
- 
+
 }
