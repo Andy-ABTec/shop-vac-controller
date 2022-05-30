@@ -3,7 +3,7 @@
 
    Created by: Andy B
    Version:    1.4
-   Date:       18/05/2022
+   Date:       30/05/2022
    License:    GNU 3.0
 
    Detects a wired tool being used or a remote fob being pressed to control a shop vac with
@@ -15,11 +15,11 @@
 #include <LibPrintf.h>
 
 //Debug Control...
-#define DEBUG 1
+#define DEBUG 0
 
 // Initialize delay times...
 #define onToolDelay 3                               // Delay between detecting the tool turning
-                                                    // on and benergising the vac relay
+                                                    // on and energising the vac relay
 #define offDelayMin 3                               // Value sets the minimum off time delay
 #define offDelayMax 30                              // Value sets the maximum off time delay
 #define offDelayPin A7                              // pot connection to adjust the off time delay
@@ -27,17 +27,18 @@
 // Define Pins...
 #define remoteInt 2                                 // ISR trigger for remote
 #define toolInt 3                                   // ISR trigger for tool
-#define relay 7                                     // Relay
-#define power 12                                    // Red "Power" LED
-#define vac 11                                      // Yellow "Vacuum" LED
-#define tool 10                                     // Green "Tool" LED
-#define remote 9                                    // Blue "Remote" LED
+#define relayPin 7                                  // Relay
+#define powerLed 12                                 // Red "Power" LED
+#define vacLed 11                                   // Yellow "Vacuum" LED
+#define toolLed 10                                  // Green "Tool" LED
+#define remoteLed 9                                 // Blue "Remote" LED
 
-#define vacLedFlashsPerSecond 4                     // Shutdown flash rate
+#define vacLedFlashsPerSecond 4                     // Vacuum LED flash rate
 
 // Define Flags...
-int remoteFlag=0;
+bool remoteFlag=false;
 bool toolFlag=false;
+bool vacFlag=false;
 
 // Calculate the off time delay based on the min and max delays and the pot setting
 int offDelay(){
@@ -51,40 +52,24 @@ return(offDelay);
   int rate=500/flashesPerSecond;
   for(int i=0; i<flashesPerSecond*seconds*2; i++)
   {
-    digitalWrite(vac,not(digitalRead(vac)));
+    digitalWrite(vacLed,not(digitalRead(vacLed)));
     delay(rate);
   }
 }
 
-// Interrupt Service Routines...
+// Remote Interrupt Service Routines...
 void remoteISR(void){
+  remoteFlag=not(digitalRead(remoteInt));
   #if DEBUG==1
-    printf("in Remote ISR\n");
-  #endif
-  remoteFlag=digitalRead(remoteInt);
-  #if DEBUG==1
-    printf("Remote Flag = %d\n",remoteFlag);
+    printf("remoteISR sets remoteFlag = %d\n",remoteFlag);
   #endif
 }
 
-void toolISR(void);
-
-// Start Remote...
-
-// Start Tool...
-
-// Stop...
-void stop(void){
-  if(remoteFlag==false && toolFlag==false)
-  {
-    noInterrupts();
-    flash(vacLedFlashsPerSecond,offDelay());
-    digitalWrite(relay,false);
-    digitalWrite(vac,false);
-    digitalWrite(remote,false);
-    digitalWrite(tool,false);
-    interrupts();
-  }
+void toolISR(void){
+  toolFlag=not(digitalRead(toolInt));
+  #if DEBUG==1
+    printf("toolISR sets toolFlag = %d\n",toolFlag);
+  #endif
 }
 
 // Setup...
@@ -95,7 +80,7 @@ void setup()
   #endif
 
   // Initialise LED pins and blink LEDs...
-  int led[4]={power, vac, tool, remote};
+  int led[4]={powerLed, vacLed, toolLed, remoteLed};
   for (int pin=0; pin<4; pin++)
   {
     pinMode(led[pin],OUTPUT);
@@ -105,27 +90,54 @@ void setup()
   }
 
   // Initialize relay pin...
-  digitalWrite(relay,LOW);
-  pinMode(relay,OUTPUT);
+  digitalWrite(relayPin,LOW);
+  pinMode(relayPin,OUTPUT);
 
   #if DEBUG==1                                      // DEBUG: test the relay
-    digitalWrite(relay,HIGH);
+    digitalWrite(relayPin,HIGH);
     delay(1000);
-    digitalWrite(relay,LOW);
+    digitalWrite(relayPin,LOW);
   #endif
 
   #if DEBUG==1                                      // DEBUG: print the offDelay
     printf("offDelay = %d\n",offDelay());
   #endif
 
-attachInterrupt(remoteInt, remoteISR, CHANGE);
-attachInterrupt(toolInt, toolISR, CHANGE);
+// Attach interrupts...
+attachInterrupt(digitalPinToInterrupt(remoteInt), remoteISR, CHANGE);
+attachInterrupt(digitalPinToInterrupt(toolInt), toolISR, CHANGE);
 
 // Setup complete, turn on the power led...
-  digitalWrite(power,HIGH);
+  digitalWrite(powerLed,HIGH);
 }
 
-  // Loop...
-void loop()
-{
+// Loop...
+void loop(){
+
+  // Remote Start...
+  if(remoteFlag==true && toolFlag==false && vacFlag==false){
+    digitalWrite(remoteLed,true);                   // Turn on the Remote LED
+    digitalWrite(vacLed,true);                      // Turn on the Vacuum LED
+    digitalWrite(relayPin,true);                    // Turn on the relay
+    vacFlag=true;
+  }
+
+  // Tool Start...
+if(remoteFlag==false && toolFlag==true && vacFlag==false){
+    digitalWrite(toolLed,true);                     // Turn on the Remote
+    flash(vacLedFlashsPerSecond,onToolDelay);       // flash the Vacuum LED
+    digitalWrite(vacLed,true);                      // Turn on the Vacuum LED
+    digitalWrite(relayPin,true);                    // Turn on the relay
+    vacFlag=true;
+  }
+
+  //Stop...
+  if(remoteFlag==false && toolFlag==false && vacFlag==true){
+    digitalWrite(remoteLed,false);                  // Turn off the Remote LED
+    digitalWrite(toolLed,false);                    // Turn off the Tool LED
+    flash(vacLedFlashsPerSecond,offDelay());        // flash the Vacuum LED
+    digitalWrite(vacLed,false);                     // Make sure the Vacuum LED if off
+    digitalWrite(relayPin,false);                   // Turn off the Vacuum relay
+    vacFlag=false;
+  }
 }
