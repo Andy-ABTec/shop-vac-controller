@@ -1,4 +1,5 @@
-/* Arduino based Shop Vacuum Controller
+/*
+   Arduino based Shop Vacuum Controller
    ====================================
 
    Created by: Andy B
@@ -6,8 +7,12 @@
    Date:       30/05/2022
    License:    GNU 3.0
 
-   Detects a wired tool being used or a remote fob being pressed to control a shop vac with
+   Detects a wired tool being used or a remote key fob being pressed to control a shop vac with
    a solid state relay.
+
+   The code was built and tested using VSCode/Platform IO on an Elegoo Nano other Arduinos and
+   clones will probably need other drivers and/or tweaks to platform.ini
+
   */
 
 // Include Libaries...
@@ -15,7 +20,7 @@
 #include <LibPrintf.h>
 
 //Debug Control...
-#define DEBUG 0
+#define DEBUG 0                                     // #define DEBUG 0 -> Debug off, #define DEBUG 1 -> Debug on
 
 // Initialize delay times...
 #define onToolDelay 3                               // Delay between detecting the tool turning
@@ -133,11 +138,12 @@ if(remoteFlag==false && toolFlag==true && vacFlag==false){
 
   //Stop...
   if(remoteFlag==false && toolFlag==false && vacFlag==true){
-    digitalWrite(remoteLed,false);                  // Turn off the Remote LED
-    digitalWrite(toolLed,false);                    // Turn off the Tool LED
     flash(vacLedFlashsPerSecond,offDelay());        // flash the Vacuum LED
     digitalWrite(vacLed,false);                     // Make sure the Vacuum LED if off
     digitalWrite(relayPin,false);                   // Turn off the Vacuum relay
     vacFlag=false;
+    digitalWrite(remoteLed,false);                  // Turn off the Remote LED
+    digitalWrite(toolLed,false);                    // Turn off the Tool LED
+
   }
 }
