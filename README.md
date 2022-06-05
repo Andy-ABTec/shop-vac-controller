@@ -4,7 +4,7 @@
 
 ![Schematic Diagram](readme.images/SCH.Shop.Vac.Controller.png)
 
- Power control for the vacuum is provided by a 20A solid state relay and the remote control by a small keyfob and reciever ( I used a [fob/reciever from Amazon](https://www.amazon.co.uk/gp/product/B08SHQ749R/)}.
+ Power control for the vacuum is provided by a 20A solid state relay and the remote control by a small keyfob and reciever ( I used a [fob reciever from Amazon](https://www.amazon.co.uk/gp/product/B08SHQ749R/)}.
 
 Tool on/off sensing is provided by a small circuit by **0033mer** using a cheap current transformer  I found on [YouTube](https://www.youtube.com/watch?v=gvBVxQGS_OU&t=280s) .
 
