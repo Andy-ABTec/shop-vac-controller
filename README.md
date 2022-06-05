@@ -11,7 +11,7 @@ Tool on/off sensing is provided by a small circuit by **0033mer** using a cheap 
 
 Both the *sensitivity* of the current sensor and the *turn off* delay for the vacuum control relay are adjustable by preset potentiometers.
 
-Whilst the remote has no turn-on delay, the vacuum turns on 3s after the power tool is started (this setting may be adjusted in the Arduino cod)e. This delay helps to reduce the excessive surge current created if both the power tool and the vacuum are turned on together.
+Whilst the remote has no turn-on delay, the vacuum turns on 3s after the power tool is started (this setting may be adjusted in the Arduino code). This delay helps to reduce the excessive surge current created if both the power tool and the vacuum are turned on together.
 
 The turn-off delay is the same for both the power tool and the remote fob, and can easily be adjusted between 3s and 30s with a preset potentiometer, this allows time for the wood chips and sawdust to be cleared from the vacuum hose.
 
