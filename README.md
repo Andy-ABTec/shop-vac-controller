@@ -9,7 +9,7 @@ The four LED's display the status of the controller and its trigger source. It s
 <p align="center"><br>
 <img width="383" height="406" src="readme.images/SCH.Shop.Vac.Mains.png">
 <br>
-<span style="font-size: smaller; font-style:italic">Power Connections</span></p>
+<span style="font-size: smaller; font-style:italic">*Power Connections*</span></p>
 
  Power control for the vacuum is provided by a 20A solid state relay and the remote control by a small keyfob and reciever ( I used a [fob reciever from Amazon](https://www.amazon.co.uk/gp/product/B08SHQ749R/)).
 
