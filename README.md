@@ -3,10 +3,11 @@
  An Arduino Nano based project to provide automatic control for a small workshop vacuum by either sensing tool use, or by a keyfob style remote control.
 <p align="center">
 <img width="654" height="540" src="readme.images/SCH.Shop.Vac.Controller.png")
-<p> 
-
+<p>
 The four LED's display the status of the controller and its trigger source. It should be noted that the "Vac" LED flashes if a startup or shutdown delay is in progress.
-
+<p align="center">
+<img width="383" height="406" src="readme.images/SCH.Shop.Vac.Mains.png")
+<p>
  Power control for the vacuum is provided by a 20A solid state relay and the remote control by a small keyfob and reciever ( I used a [fob reciever from Amazon](https://www.amazon.co.uk/gp/product/B08SHQ749R/)}.
 
 Tool on/off sensing is provided by a small circuit by **0033mer** using a cheap current transformer  I found on [YouTube](https://www.youtube.com/watch?v=gvBVxQGS_OU&t=280s) .
