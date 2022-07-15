@@ -136,7 +136,7 @@ if(remoteFlag==false && toolFlag==true && vacFlag==false){
     vacFlag=true;
   }
 
-  //Stop...
+  // Stop...
   if(remoteFlag==false && toolFlag==false && vacFlag==true){
     flash(vacLedFlashsPerSecond,offDelay());        // flash the Vacuum LED
     digitalWrite(vacLed,false);                     // Make sure the Vacuum LED if off
@@ -144,6 +144,5 @@ if(remoteFlag==false && toolFlag==true && vacFlag==false){
     vacFlag=false;
     digitalWrite(remoteLed,false);                  // Turn off the Remote LED
     digitalWrite(toolLed,false);                    // Turn off the Tool LED
-
   }
 }
