@@ -11,9 +11,9 @@ The four LED's display the status of the controller and its trigger source. It s
 <br>
 <span style="font-size:3;font-style:italic">Power Connections</span></p>
 
- Power control for the vacuum is provided by a 20A solid state relay and the remote control by a small keyfob and reciever ( I used a [fob reciever from Amazon](https://www.amazon.co.uk/gp/product/B08SHQ749R/)).
+ Power control for the vacuum is provided by a 20A solid state relay and the remote control by a small keyfob and reciever ( I used a [**fob reciever from Amazon**](https://www.amazon.co.uk/gp/product/B08SHQ749R/)).
 
-Powwertool on/off sensing is provided by a small circuit by **0033mer** using a cheap current transformer  I found on [YouTube](https://www.youtube.com/watch?v=gvBVxQGS_OU&t=280s).
+Power-tool on/off sensing is provided by a small circuit by [**0033mer**](https://www.youtube.com/user/0033mer) using a cheap current transformer  I found on [**YouTube**](https://www.youtube.com/watch?v=gvBVxQGS_OU&t=280s).
 
 Both the *sensitivity* of the current sensor and the turn-off delay for the vacuum control relay are adjustable by preset potentiometers.
 
