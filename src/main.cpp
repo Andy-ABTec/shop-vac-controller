@@ -7,11 +7,11 @@
    Date:       30/05/2022
    License:    GNU 3.0
 
-   Detects a wired tool being used or a remote key fob being pressed to control a shop vac with
-   a solid state relay.
+   Detects current to a wired tool being used or a remote key fob being pressed to control a shop vac
+   with a solid state relay.
 
    The code was built and tested using VSCode/Platform IO using an Elegoo Nano other Arduinos and
-   clones will probably need other drivers and/or tweaks to platform.ini
+   clones may other drivers and/or tweaks to complie satisfactorily.
 
   */
 
