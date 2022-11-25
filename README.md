@@ -4,7 +4,7 @@ An Arduino Nano-based project to provide automatic control for a small workshop 
 <p align="center"><br>
 <img width="654" height="540" src="readme.images/SCH.Shop.Vac.Controller.png"><br>
 <span style="font-size:3;font-style:italic">Circuit Diagram</span></p>
-The four LED's display the status of the controller and its trigger source. It should be noted that the "Vac" LED flashes if a startup or shutdown delay is in progress.
+Four LED's display the status of the controller and its trigger source. It should be noted that the "Vac On" LED flashes if a startup or shutdown delay is in progress.
 
 <p align="center"><br>
 <img width="383" height="406" src="readme.images/SCH.Shop.Vac.Mains.png">
