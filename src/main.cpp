@@ -11,6 +11,7 @@
    shop vac with a solid state relay.
 
    The code was built and tested using VSCode/Platform IO on an Elegoo Nano.
+
   */
 
 // Include Libaries...
@@ -126,7 +127,7 @@ void loop(){
   }
 
   // Tool Start...
-if(remoteFlag==false && toolFlag==true && vacFlag==false){
+ if(remoteFlag==false && toolFlag==true && vacFlag==false){
     digitalWrite(toolLed,true);                     // Turn on the Remote
     flash(vacLedFlashsPerSecond,onToolDelay);       // flash the Vacuum LED
     digitalWrite(vacLed,true);                      // Turn on the Vacuum LED
