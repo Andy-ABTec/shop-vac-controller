@@ -7,7 +7,7 @@
    Date:       30/05/2022
    License:    GNU 3.0
 
-   Detects current to a wired tool being started or a remote key fob being pressed to control a 
+   Detects current to a wired tool being started or a remote key fob being pressed to control a
    shop vac with a solid state relay.
 
    The code was built and tested using VSCode/Platform IO on an Elegoo Nano.
