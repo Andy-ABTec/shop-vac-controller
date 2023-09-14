@@ -31,7 +31,7 @@
 // Define Pins...
 #define remoteInt 2                                 // ISR trigger for remote
 #define toolInt 3                                   // ISR trigger for tool
-#define relayPin 7                                  // Relay
+#define relayPin 13                                 // Relay
 #define powerLed 12                                 // Red "Power" LED
 #define vacLed 11                                   // Yellow "Vacuum" LED
 #define toolLed 10                                  // Green "Tool" LED
