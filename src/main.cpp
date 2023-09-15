@@ -31,7 +31,11 @@
 // Define Pins...
 #define remoteInt 2                                 // ISR trigger for remote
 #define toolInt 3                                   // ISR trigger for tool
-#define relayPin 13                                 // Relay
+#if DEBUG == 0
+  #define relayPin 7                                // Relay o/p -> SSR via J2
+#else
+  #define relayPin 13                               // Relay o/p -> on-board test LED
+#endif
 #define powerLed 12                                 // Red "Power" LED
 #define vacLed 11                                   // Yellow "Vacuum" LED
 #define toolLed 10                                  // Green "Tool" LED
