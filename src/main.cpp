@@ -32,7 +32,7 @@
 #define remoteInt 2                                 // ISR trigger for remote
 #define toolInt 3                                   // ISR trigger for tool
 #if DEBUG == 0
-  #define relayPin 7                                // Relay o/p -> SSR via J2
+  #define relayPin 7                                // Relay o/p -> SSR via  jumper J2
 #else
   #define relayPin 13                               // Relay o/p -> on-board test LED
 #endif
