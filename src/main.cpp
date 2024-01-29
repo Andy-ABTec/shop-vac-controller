@@ -1,5 +1,5 @@
 /*
-   Arduino based Shop Vacuum Controller
+   Arduino Based Shop Vacuum Controller
    ====================================
 
    Created by: Andy B
@@ -19,7 +19,7 @@
 #include <LibPrintf.h>
 
 //Debug Control...
-#define DEBUG 0                                     // #define DEBUG 0 -> Debug off, #define DEBUG 1 -> Debug on
+#define DEBUG 1                                     // #define DEBUG 0 -> Debug off, #define DEBUG 1 -> Debug on
 
 // Initialize delay times...
 #define onToolDelay 3                               // Delay between detecting the tool turning
@@ -65,7 +65,7 @@ return(offDelay);
   }
 }
 
-// Remote Interrupt Service Routines...
+// Remote Interrupt Service Routine...
 void remoteISR(void){
   remoteFlag=not(digitalRead(remoteInt));
   #if DEBUG==1
@@ -73,6 +73,7 @@ void remoteISR(void){
   #endif
 }
 
+// Tool Interrupt Service Routine...
 void toolISR(void){
   toolFlag=not(digitalRead(toolInt));
   #if DEBUG==1
