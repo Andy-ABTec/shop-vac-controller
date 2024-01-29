@@ -1,6 +1,6 @@
 # Shop Vac Controller
 
-An Arduino Nano-based project to provide automatic control for a small workshop vacuum by either sensing tool use, or by a keyfob style remote control.
+A small Arduino Nano-based project to provide automatic control for a workshop vacuum by either sensing tool use, or by a keyfob style remote control.
 <p align="center"><br>
 <img width="654" height="540" src="readme.images/SCH.Shop.Vac.Controller.png"><br>
 <span style="font-size:3;font-style: italic">Circuit Diagram</span></p>Four LEDs display the status of the controller and its trigger source. It should be noted that the "Vac On" LED flashes if a startup or shutdown delay is in progress.
