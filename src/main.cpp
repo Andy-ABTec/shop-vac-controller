@@ -4,44 +4,46 @@
 
    Created by: Andy B
    Version:    1.4
-   Date:       30/05/2022
+   Date:       30/03/2024
    License:    GNU 3.0
 
-   Detects current to a wired tool being started or a remote key fob being pressed to control a
-   shop vac with a solid state relay.
+   Built and tested using VSCode/Platform IO on an Elegoo Nano, this project
+   uses a current transformer to detect if a wired power tool has been started
+   or detects if a remote control keyfob has been pressed to control a shop vac 
+   using a solid state relay.
 
-   The code was built and tested using VSCode/Platform IO on an Elegoo Nano.
-
-  */
+ */
 
 // Include Libaries...
 #include <Arduino.h>
 #include <LibPrintf.h>
 
 //Debug Control...
-#define DEBUG 0                                     // #define DEBUG 0 -> Debug off, #define DEBUG 1 -> Debug on
+#define DEBUG 0                                     // #define DEBUG 0 -> Debug off,
+                                                    // #define DEBUG 1 -> Debug on
 
 // Initialize delay times...
 #define onToolDelay 3                               // Delay between detecting the tool turning
                                                     // on and energising the vac relay
 #define offDelayMin 3                               // Value sets the minimum off time delay
 #define offDelayMax 30                              // Value sets the maximum off time delay
-#define offDelayPin A7                              // pot connection to adjust the off time delay
+#define offDelayPin A7                              // pot connection to adjust the "off" time delay
+#define vacLedFlashsPerSecond 4                     // Vacuum LED flash rate
 
 // Define Pins...
 #define remoteInt 2                                 // ISR trigger for remote
 #define toolInt 3                                   // ISR trigger for tool
-#if DEBUG == 0
-  #define relayPin 7                                // Relay o/p -> SSR via  jumper J2
-#else
-  #define relayPin 13                               // Relay o/p -> on-board test LED
-#endif
 #define powerLed 12                                 // Red "Power" LED
 #define vacLed 11                                   // Yellow "Vacuum" LED
 #define toolLed 10                                  // Green "Tool" LED
 #define remoteLed 9                                 // Blue "Remote" LED
 
-#define vacLedFlashsPerSecond 4                     // Vacuum LED flash rate
+
+#if DEBUG == 0
+  #define relayPin 7                                // Relay o/p -> SSR via  jumper J2
+#else
+  #define relayPin 13                               // Relay o/p -> on-board test LED
+#endif
 
 // Define Flags...
 bool remoteFlag=false;
