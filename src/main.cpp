@@ -11,8 +11,7 @@
    uses a current transformer to detect if a wired power tool has been started
    or detects if a remote control keyfob has been pressed to control a shop vac 
    using a solid state relay.
-
- */
+*/
 
 // Include Libaries...
 #include <Arduino.h>
