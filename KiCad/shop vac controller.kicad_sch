@@ -5405,9 +5405,9 @@
 			"MPrQ2iU0e1ecpFihaLwsuNGHtOdNYIzYyNQP/vUPKhAAxfevq+MAAAAASUVORK5CYII="
 		)
 	)
-	(text "During initialization the LED's cycle once in one second steps.\n\nA solid Red LED indicates that the unit is ready.\n\nThe Green LED indicates that a trigger from a mains powered tool has been detected.\n\nThe Blue LED indicates that a trigger from the remote fob has been detected.\n\nThe Yellow LED indicates the state of the vacuum relay. Solid indicates that the relay is closed, flashing indicates that a \"wait\" is in progress.\n\nWhen the unit is triggered by a mains powered tool starting it flashes indicating that a 3s delay is in progress before starting the vacuuum.\nThis reduces the additional power surge of both the vacuum and the tool starting together.\n\nThe trigger sensitivity for the power tool is adjusted using RV1.\n\nWhen the unit detects that the that the vacuum is no longer required it flashes the Yellow LED indicating that an adjustable \"shutdown\" period\nhas been initiated allowing dust extraction from the vacuum hose.\n\nThis period is adjustable between 3s and 30s using the potentiometer RV2."
+	(text "During initialization the LED's cycle once in one second steps.\n\nA solid Red LED indicates that the unit is ready.\n\nThe Green LED indicates that a trigger from a mains powered tool has been detected.\n\nThe Blue LED indicates that a trigger from the remote fob has been detected.\n\nThe Yellow LED indicates the state of the vacuum relay. Solid indicates that the relay is closed, flashing indicates that a \"wait\" is in progress.\n\nWhen the unit is triggered by a mains powered tool starting it flashes indicating that a 3s delay is in progress before starting the vacuuum.\nThis reduces the additional power surge of both the vacuum and the tool starting together.\n\nThe trigger sensitivity for the power tool is adjusted using RV1.\n\nWhen the unit detects that the that the tool has been turned off or the remote \"STOP\" is pressed the Yellow LED flahes indicating that an\nadjustable \"shutdown\" period has been initiated allowing dust extraction from the vacuum hose.\n\nThis period is adjustable between 3s and 30s using the potentiometer RV2."
 		(exclude_from_sim no)
-		(at 33.02 234.95 0)
+		(at 36.576 209.296 0)
 		(effects
 			(font
 				(size 1.27 1.27)
