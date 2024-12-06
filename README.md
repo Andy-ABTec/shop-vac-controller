@@ -4,7 +4,7 @@ An Arduino Nano-based project to provide automatic control for a small workshop 
 
 Four LEDs display the status of the controller and its trigger source. It should be noted that the "Vac On" LED flashes if a startup or shutdown delay is in progress.
 
- Power control for the vacuum is provided by a 20A solid state relay and the remote control by a small keyfob and receiver ( I used a [**fob receiver** from Amazon](https://www.amazon.co.uk/gp/product/B08SHQ749R/)).
+ Power control for the vacuum is provided by a 20A solid state relay and the remote control by a small keyfob and receiver ( I used a [**fob/receiver** from Amazon](https://www.amazon.co.uk/gp/product/B08SHQ749R/)).
 
 Power-tool on/off sensing is provided by a small circuit by [**0033mer**](https://www.youtube.com/user/0033mer) using a cheap current transformer  I found on [**YouTube**](https://www.youtube.com/watch?v=gvBVxQGS_OU&t=280s).
 
